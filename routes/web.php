@@ -29,6 +29,9 @@ Route::post('/register', 'RegisterController@valid');
 
 Route::get('/home', 'HomeController@index')->name('home.index');
 
+Route::get('/admin', 'AdminController@index')->name('admin.index');
+
+	Route::get('/resturent', 'ResturentSpaceController@index')->name('resturent.index');
 
 	Route::get('/parkingspace', 'ParkingSpaceController@index')->name('parkingspace.index');
 

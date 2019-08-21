@@ -28,8 +28,9 @@ class RegisterRequest extends FormRequest
             'name'=>'required|max:50',
             'email'=>'required|email',
             'number'=>'required|min:11|numeric',
-            'uname'=>'required|max:50',
+            'username'=>'required|max:50',
             'password'=>'required|max:8'
+            'typr'=>'required'
         ];
     }
 

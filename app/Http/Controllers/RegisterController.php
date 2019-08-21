@@ -22,7 +22,7 @@ class RegisterController extends Controller
         }
     }
 
-	public function valid(RegisterRequest $req){
+	public function valid(Request $req){
 		
 		$result	= DB::table('users')->where('username', $req->username)
 				 ->where('password', $req->password)
@@ -43,8 +43,8 @@ class RegisterController extends Controller
             $user->number = $req->number;
             $user->username = $req->username;
             $user->password = $req->password;
-            $type = 'user';
-            $user->type = $type;
+            
+            $user->type = $req->type;
             
             $user->save();
             
@@ -67,34 +67,5 @@ class RegisterController extends Controller
 		}
 	}
 
-	public function update(Request $req, $uid){
-
-        if($this->sessionCheck($req)){
-            
-            $user = new User();
-            $b = DB::table('users')->where('id', $req->uid)->get();
-            $user = User::find($req->uid);
-            $username = $req->session()->get('username');
-            //$result = json_decode($b, true);
-            //echo $user;
-            $user->name = $req->name;
-            $user->email = $req->email;
-            $user->number = $req->number;
-            $user->username = $username;
-            $user->password = $req->password;
-            
-            //$user = $b;
-
-            //echo $b;
-            //echo $user;
-            $user->save();
-                
-            return redirect()->route('user.index');
-
-        }else{
-            return redirect()->route('login.index');
-        }
-        
-    }
 
 }

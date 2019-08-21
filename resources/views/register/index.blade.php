@@ -39,11 +39,24 @@
 			<tr>
 				<td><input type="password" name="password" size="35" placeholder="Enter your password"></td>
 			</tr>
+			<tr>
+				<td>Type</td>
+			</tr>
+			<tr>
+				<td size="35" placeholder="Enter your password">
+					<select name="type">
+						<option value=""></option>
+						<option value="member">Member</option>
+						<option value="visitor">Visitor</option>
+					</select>
+				</td>
+			</tr>
 			<tr></tr>
 			<tr></tr>
 			<tr align="center">
 				<td><input type="submit" name="submit" value="Register" style="height:25px; width:110px"></td>
 			</tr>
+			
 			<tr></tr>
 			<tr></tr>
 			<tr align="center">
@@ -58,10 +71,12 @@
 	<div align="center">
 		{{session('msg')}}
 	</div>
+<div align="center">
+	@foreach($errors->all() as $err)
+	{{$err}} <br>
+	@endforeach	
+</div>
 
-@foreach($errors->all() as $err)
-{{$err}} <br>
-@endforeach
 
 </body>
 </html>

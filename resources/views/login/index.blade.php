@@ -9,7 +9,7 @@
 	<br>
 	<br>
 	<br>
-	<h1 align="center">Parking Solution</h1>
+	<h1 align="center">Online Food Blog</h1>
 
 	<form method="post">
 		@csrf
@@ -45,10 +45,12 @@
 	<div align="center">
 		{{session('msg')}}
 	</div>
-
-@foreach($errors->all() as $err)
-{{$err}} <br>
-@endforeach
+<div align="center">
+	@foreach($errors->all() as $err)
+	{{$err}} <br>
+	@endforeach
+	
+</div>
 
 </body>
 </html>

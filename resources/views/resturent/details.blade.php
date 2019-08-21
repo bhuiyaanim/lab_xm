@@ -16,7 +16,7 @@
 	<table align="center">
 		<tr>
 			<td>Parking SpaceId : </td>
-			<td>{{$std['id']}}</td>
+			<td>{{$std['spaceId']}}</td>
 		</tr>
 		<tr>
 			<td>Name : </td>

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Resturent List</title>
+	<title>Student List</title>
 </head>
 <body>
 
-	<h1 align="center">Resturent List</h1>
+	<h1 align="center">Parking Space List </h1>
 	
 	<div align="center">
 		<a href="{{route('home.index')}}">Home</a> |
@@ -26,7 +26,8 @@
 			<td>NO</td>
 			<td>NAME</td>
 			<td>Location</td>
-			<td>Contact No.</td>
+			<td>Capacity</td>
+			<td>Charge/hr</td>
 			<td>Activity</td>
 		</tr>
 
@@ -35,12 +36,15 @@
 			
 			<tr>
 				<td>{{$i}}</td>
-				<td style="display:none;">{{$s['id']}}</td>
+				<td style="display:none;">{{$s['spaceId']}}</td>
 				<td>{{$s['name']}}</td>
 				<td>
 					{{$s['houseNo']}}, {{$s['roadNo']}}, {{$s['area']}}
 				</td>
-				<td>{{$s['number']}}</td>
+				<td>
+					{{$s['motorcycle']}}, {{$s['car']}}, {{$s['truck']}}, {{$s['buse']}}
+				</td>
+				<td>{{$s['charge']}}</td>
 				<td>
 					<a href="{{route('parkingspace.details', $s['spaceId'])}}">Details</a> |
 					<a href="{{route('parkingspace.edit', $s['spaceId'])}}">Edit</a> |

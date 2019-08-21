@@ -7,7 +7,6 @@ use App\User;
 use App\Space;
 use App\Booking;
 use App\Bookinglist;
-use App\Resturent;
 use Validator;
 use App\Http\Requests\ParkingSpaceRequest;
 
@@ -25,7 +24,7 @@ class ParkingSpaceController extends Controller
     public function index(Request $req){
 
         if($this->sessionCheck($req)){
-            return view('parkingspace.index');
+            return view('resturent.index');
         }else{
             return redirect()->route('login.index');
         }
@@ -36,7 +35,7 @@ class ParkingSpaceController extends Controller
 
         if($this->sessionCheck($req)){
             
-            $s = Resturent::find($sid);
+            $s = Space::find($sid);
             return view('parkingspace.details', ['std'=> $s]);
         }else{
             return redirect()->route('login.index');
@@ -58,8 +57,12 @@ class ParkingSpaceController extends Controller
 
             $house = 'house No';
             $road = 'road No';
+            $motorcycle = 'motorcycle';
+            $car = 'car';
+            $truck = 'truck';
+            $buse = 'buse';
 
-            $check = DB::table('resturents')->where('name', $req->name)->where('houseNo', $house." ".$req->houseNo)->where('roadNo', $road." ".$req->roadNo)->where('area', $req->area)->get();
+            $check = DB::table('spaces')->where('name', $req->name)->where('houseNo', $house." ".$req->houseNo)->where('roadNo', $road." ".$req->roadNo)->where('area', $req->area)->get();
 
             //echo $check;
 
@@ -69,20 +72,33 @@ class ParkingSpaceController extends Controller
                 return redirect()->route('parkingspace.add');
             }else{
 
-                $space  = new Request();
+                $space  = new Space();
                 
                 $space->name = $req->name;
                 $space->houseNo = $house." ".$req->houseNo;
                 $space->roadNo = $road." ".$req->roadNo;
                 $space->area = $req->area;
-                $space->number = $req->number;
+                $space->motorcycle = $motorcycle." ".$req->motorcycle;
+                $space->car = $car." ".$req->car;
+                $space->truck = $truck." ".$req->truck;
+                $space->buse = $buse." ".$req->buse;
+                $space->charge = $req->charge;
                 
                 $space->save();
 
-                $result = DB::table('resturents')->where('name', $req->name)->get();
+                $bookinglist  = new Bookinglist();
+
+                $bookinglist->name = $req->name;
+                $bookinglist->location = $space->houseNo.", ".$space->roadNo.", ".$space->area;
+                $bookinglist->count = 0;
+                $bookinglist->tc = 0;
+
+                $bookinglist->save();
+                
+                $result = DB::table('spaces')->where('name', $req->name)->get();
 
                 
-                return redirect()->route('parkingspace.details', $result[0]->id);
+                return redirect()->route('parkingspace.details', $result[0]->spaceId);
 
             }
 
@@ -97,10 +113,9 @@ class ParkingSpaceController extends Controller
 
         if($this->sessionCheck($req)){
         	
-            $std = Resturent::all();
-            $c = Resturent::all()->count();
-            echo "Works";
-        	//return view('parkingspace.show', ['stdlist'=>$std], ['count'=>$c]);
+            $std = Space::all();
+            $c = Space::all()->count();
+        	return view('parkingspace.show', ['stdlist'=>$std], ['count'=>$c]);
         
         }else{
             return redirect()->route('login.index');

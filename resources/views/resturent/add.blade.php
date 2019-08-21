@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Create Resturent</title>
+	<title>Create Parking Space</title>
 </head>
 <body>
-	<h1 align="center">Add Resturent</h1>
+	<h1 align="center">Add Parking Space</h1>
 	<div align="center">
 		<a href="{{route('home.index')}}">Home</a> |
-		<a href="{{route('parkingspace.spaceList')}}">Resturent List</a> |
+		<a href="{{route('parkingspace.spaceList')}}">Parking Space List</a> |
 		<a href="/logout">Logout</a>
 	</div>
 	<br>
@@ -16,7 +16,7 @@
 	@csrf	
 	<table align="center">
 		<tr>
-			<td>Resturent Name</td>
+			<td>Name</td>
 		</tr>
 		<tr>
 			<td><input type="text" name="name" size="35" placeholder="Enter name of the parking space"></td>
@@ -40,13 +40,38 @@
 		<tr>
 			<td><input type="text" name="area" size="35" placeholder="Enter area"></td>
 		</tr>
+		
 		<tr>
-			<td>Contact Number</td>
+			<td>Motorcycle</td>
 		</tr>
 		<tr>
-			<td><input type="text" name="number" size="35" placeholder="Enter contact number, ex:01*********"></td>
+			<td><input type="text" name="motorcycle" size="35" placeholder="Enter capacity of motorcycle"></td>
+		</tr>
+		<tr>
+			<td>Car</td>
+		</tr>
+		<tr>
+			<td><input type="text" name="car" size="35" placeholder="Enter capacity of car"></td>
+		</tr>
+		<tr>
+			<td>Truck</td>
+		</tr>
+		<tr>
+			<td><input type="text" name="truck" size="35" placeholder="Enter capacity of truck"></td>
+		</tr>
+		<tr>
+			<td>Buse</td>
+		</tr>
+		<tr>
+			<td><input type="text" name="buse" size="35" placeholder="Enter capacity of buse"></td>
 		</tr>
 		
+		<tr>
+			<td>Charge/hr</td>
+		</tr>
+		<tr>
+			<td><input type="text" name="charge" size="35" placeholder="Enter charge per hours"></td>
+		</tr>
 		<tr></tr>
 		<tr></tr>
 		<tr>
@@ -59,12 +84,9 @@
 			{{session('msg')}}
 	</div>
 
-<div align="center">
-	@foreach($errors->all() as $err)
+@foreach($errors->all() as $err)
 	{{$err}} <br>
-	@endforeach
-	
-</div>
+@endforeach
 
 
 

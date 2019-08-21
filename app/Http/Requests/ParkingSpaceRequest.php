@@ -29,11 +29,8 @@ class ParkingSpaceRequest extends FormRequest
             'houseNo'=>'required',
             'roadNo'=>'required|numeric',
             'area'=>'required|string',
-            'motorcycle'=>'required|numeric',
-            'car'=>'required|numeric',
-            'truck'=>'required|numeric',
-            'buse'=>'required|numeric',
-            'charge'=>'required|numeric'
+            'number'=>'required'
+            
             
         ];
     }
@@ -42,21 +39,7 @@ class ParkingSpaceRequest extends FormRequest
 
         return [
 
-            "name.required"=> "name required",
-            "name.string"=> "name must be string",
-            "houseNo.required"=> "location required",
-            "roadNo.required"=> "location required",
-            "roadNo.numeric"=> "road munber must be numeric",
-            "motorcycle.required"=> "capacity required",
-            "motorcycle.numeric"=> "capacity must be numeric",
-            "car.required"=> "capacity required",
-            "car.numeric"=> "capacity must be numeric",
-            "truck.required"=> "capacity required",
-            "truck.numeric"=> "capacity must be numeric",
-            "buse.required"=> "capacity required",
-            "buse.numeric"=> "capacity must be numeric",
-            "charge.required"=> "charge required",
-            "charge.numeric"=> "charge must be numeric"
+            
         ];
     }
 }

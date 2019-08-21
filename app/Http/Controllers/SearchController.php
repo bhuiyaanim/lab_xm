@@ -38,9 +38,9 @@ class SearchController extends Controller
 
             '<td>'.$space->roadNo.'</td>'.
             
-            '<td>'.$space->charge.'</td>'.
-
-            '<td>'.'<a href="'.route('userbooking.confirm', $space->spaceId).'">Add Booking</a>'.'</td>'.
+            '<td>'.'<a href="'.route('booking.add', $space->spaceId).'">Add Foods</a>'.'</td>'.
+            
+            '<td>'.'<a href="'.route('userbooking.confirm', $space->spaceId).'">Add Review</a>'.'</td>'.
 
             '</tr>';
         

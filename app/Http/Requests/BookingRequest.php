@@ -25,15 +25,9 @@ class BookingRequest extends FormRequest
     {
         return [
 
-            'name'=>'required|string',
-            'email'=>'required|email',
-            'number'=>'required|numeric',
-            'psname'=>'required',
-            'date'=>'required',
-            'time'=>'required',
-            'duration'=>'required',
-            'vnumber'=>'required',
-            'type'=>'required'
+            'name'=>'required',
+            'details'=>'required',
+            'price'=>'required'
             
         ];
     }
@@ -42,18 +36,7 @@ class BookingRequest extends FormRequest
 
         return [
 
-            "name.required"=> "name required",
-            "name.string"=> "name must be string",
-            "email.required"=> "email required",
-            "email.email"=> "must be in email format",
-            "number.required"=> "phone number required",
-            "number.size"=> "phone number must be of 11 characters",
-            "psname.required"=> "parking space name required",
-            "date.required"=> "date required",
-            "time.required"=> "time required",
-            "duration.required"=> "duration required",
-            "vnumber.required"=> "vehicle number required",
-            "type.required"=> "type required"
+            
         ];
     }
 }

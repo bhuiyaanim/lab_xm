@@ -2,7 +2,7 @@
 <html>
 
     <head>
-        <title>Search Parking</title>
+        <title>Search Resturent</title>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
     </head>
@@ -18,8 +18,8 @@
           <div class="row">
           <div class="panel panel-default">
           <div class="panel-heading">
-          <a href="{{route('user.index')}}">Home</a> |
-          <a href="{{route('userbooking.show')}}">My Bookings</a> |
+          <a href="{{route('home.index')}}">Home</a> |
+          <a href="{{route('parkingspace.spaceList')}}">Resturent List</a> |
           <a href="/logout">Logout</a>
         </div>
 
@@ -27,7 +27,7 @@
           <div class="row">
           <div class="panel panel-default">
           <div class="panel-heading">
-          <h4>Total Parking Space : {{$count}}</h4>
+          <h4>Total Resturent : {{$count}}</h4>
         </div>
         
         <div class="panel-body">
@@ -45,15 +45,13 @@
 
         <tr>
 
-        <th>Parking Space Name</th>
+        <th>Resturent Name</th>
 
         <th>Area</th>
 
         <th>House No.</th>
 
         <th>Road No. </th>
-
-        <th>Charge/hr</th>
 
         <th>Action</th>
 

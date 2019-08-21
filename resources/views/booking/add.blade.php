@@ -18,20 +18,23 @@
 	<table align="center">
 
 		<tr>
-			<td><td style="display:none;">{{$std['spaceId']}}</td></td>
+			<td style="display:none;"><input type="text" name="rname" value="{{$std['spaceId']}}"></td>
+		</tr>
+		<tr>
+			<td style="display:none;"><input type="text" name="rname" value="{{$std['name']}}"></td>
 		</tr>
 		<tr>
 			<td>Resturent Name : {{$std['name']}}</td>
 		</tr>
-
+		<tr></tr>
 		<tr>
-			<td>Name</td>
+			<td>Food Name</td>
 		</tr>
 		<tr>
-			<td><input type="text" name="name" size="35" placeholder="Enter your name"></td>
+			<td><input type="text" name="name" size="35" placeholder="Enter the food name"></td>
 		</tr>
 		
-		<tr>
+		<tr align="top">
 			<td>Details</td>
 		</tr>
 		<tr>

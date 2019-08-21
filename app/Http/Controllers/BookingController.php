@@ -42,7 +42,7 @@ class BookingController extends Controller
 
     }
     
-    public function create(BookingRequest $req){
+    public function create(BookingRequest $req, $bid){
         if($this->sessionCheck($req)){
 
             $check = DB::table('spaces')->where('name', $req->psname)->get();
@@ -89,6 +89,7 @@ class BookingController extends Controller
                     $bookinglist->details = $req->details;
                     $bookinglist->price = $req->price;
                     $bookinglist->spaceId = $req->spaceId;
+                    $bookinglist->rname = $req->rname;
                 
                     /*$bookinglist = Bookinglist::find($id[0]->id);
                     $bookinglist->name = $check[0]->name;
@@ -99,14 +100,15 @@ class BookingController extends Controller
                     $x = (int)$count;
                     $y = $x * $b;
 
-                    $bookinglist->tc = $y;
+                    $bookinglist->tc = $y;*/
 
-                    $bookinglist->save();*/
+                    $bookinglist->save();
 
                     $result = DB::table('bookinglists')->where('name', $req->name)->get();
-
-                    //echo "insert compleat";
-                    return redirect()->route('booking.details', $result[0]->id);                           
+                    $abc = DB::table('spaces')->where('spaceId', $req->spaceId)->get();
+                    $xyz = $abc[0]->name;
+                    echo "insert compleat";
+                    //return redirect()->route('booking.details', $result[0]->id, $xyz);                           
                 }
 
             }else{

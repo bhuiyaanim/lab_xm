@@ -135,9 +135,13 @@ class BookingController extends Controller
             
             $spaceId = $req->session()->get('spaceId');
 
-            $b = Bookinglist::find($bid);
-        
-            return view('booking.total', ['std'=> $b]);
+            $b = DB::table('bookinglists')->where('spaceId', $spaceId)->get();
+            $c = DB::table('bookinglists')->where('spaceId', $spaceId)->get()->count();
+            //$c = DB::table('bookinglists')->where('spaceId', $spaceId)->get()->count();          
+            //echo $b;
+            $result = json_decode($b, true);
+
+            return view('booking.total', ['newlist'=> $result], ['count'=>$c]);
         
         }else{
             return redirect()->route('login.index');

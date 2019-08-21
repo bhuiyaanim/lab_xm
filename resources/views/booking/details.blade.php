@@ -8,6 +8,7 @@
 	<div align="center">
 		<a href="{{route('home.index')}}">Home</a> |
 		<a href="{{route('parkingspace.spaceList')}}">Resturent List</a> |
+		<a href="{{route('booking.total')}}">Food List</a> |
 		<a href="/logout">Logout</a>	
 	</div>
 	

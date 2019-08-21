@@ -31,6 +31,21 @@ class ParkingSpaceController extends Controller
 
     }
 
+    public function profile(Request $req, $uid){
+
+        if($this->sessionCheck($req)){
+
+            $userid = $req->session()->get('userid');
+            $b = DB::table('users')->where('id', $userid)->get();
+            $result = json_decode($b, true);
+            //echo $b;
+            return view('parkingspace.profile', ['std'=> $result]);
+
+        }else{
+            return redirect()->route('login.index');
+        }
+    }
+
     public function details(Request $req, $sid){
 
         if($this->sessionCheck($req)){

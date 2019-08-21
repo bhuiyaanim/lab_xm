@@ -9,7 +9,7 @@
 	
 	<div align="center">
 		<a href="{{route('home.index')}}">Home</a> |
-		<a href="{{route('parkingspace.add')}}">Add Parking Space</a> |
+		<a href="{{route('parkingspace.add')}}">Add Resturent</a> |
 		<a href="/logout">Logout</a>
 	</div>
 	
@@ -44,6 +44,7 @@
 				<td>
 					<a href="{{route('parkingspace.details', $s['spaceId'])}}">Details</a> |
 					<a href="{{route('parkingspace.edit', $s['spaceId'])}}">Edit</a> |
+					<a href="{{route('booking.add', $s['spaceId'])}}">Add Foods</a> |
 					<a href="{{route('parkingspace.delete', $s['spaceId'])}}">Delete</a> 
 				</td>
 			</tr>
@@ -52,6 +53,8 @@
 
 
 	</table>
+
+	
 		
 
 </body>

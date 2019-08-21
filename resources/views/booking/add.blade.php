@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Request Booking</title>
+	<title>Add Foods</title>
 </head>
 <body>
-	<h1 align="center">Request Booking</h1>
+	<h1 align="center">Add Foods</h1>
 	<div align="center">
 		<a href="{{route('home.index')}}">Home</a> |
-		<a href="{{route('booking.more')}}">Booking List</a> |
+		<a href="{{route('parkingspace.spaceList')}}">Resturent List</a> |
 		<a href="/logout">Logout</a>	
 	</div>
 	
@@ -16,69 +16,34 @@
 <form method="post">
 	@csrf	
 	<table align="center">
+
+		<tr>
+			<td><td style="display:none;">{{$std['spaceId']}}</td></td>
+		</tr>
+		<tr>
+			<td>Resturent Name : {{$std['name']}}</td>
+		</tr>
+
 		<tr>
 			<td>Name</td>
 		</tr>
 		<tr>
 			<td><input type="text" name="name" size="35" placeholder="Enter your name"></td>
 		</tr>
+		
 		<tr>
-			<td>Email Address</td>
+			<td>Details</td>
 		</tr>
 		<tr>
-			<td><input type="text" name="email" size="35" placeholder="Enter your email  ex:abc@xyz.com"></td>
+			<td><input type="text" name="details" size="35" style="height:150px" placeholder="Enter Details of the food"></td>
 		</tr>
 		<tr>
-			<td>Contact No.</td>
-			
+			<td>Price</td>
 		</tr>
 		<tr>
-			<td><input type="text" name="number" size="35" placeholder="Enter your phone no. ex:01*********"></td>
+			<td><input type="text" name="price" size="35" placeholder="Enter Price of the food"></td>
 		</tr>
-		<tr>
-			<td>Required Parking Name</td>
-		</tr>
-		<tr>
-			<td><input type="text" name="psname" size="35" placeholder="Enter required area/location"></td>
-		</tr>
-		<tr>
-			<td>Date</td>
-		</tr>
-		<tr>
-			<td><input type="text" name="date" size="35" placeholder="Enter Date ex:day/month/year"></td>
-		</tr>
-		<tr>
-			<td>Time</td>
-		</tr>
-		<tr>
-			<td><input type="text" name="time" size="35" placeholder="Enter Time"></td>
-		</tr>
-		<tr>
-			<td>Duration</td>
-		</tr>
-		<tr>
-			<td><input type="text" name="duration" size="35" placeholder="Enter the duration of your booking"></td>
-		</tr>
-		<tr>
-			<td>Vehicle Number</td>
-		</tr>
-		<tr>
-			<td><input type="text" name="vnumber" size="35" placeholder="Enter vehicle no. ex:DHAKA-D-**-****"></td>
-		</tr>
-		<tr>
-			<td>Vehicle Type</td>
-		</tr>
-		<tr>
-			<td>
-				<select name="type">
-					<option value=""></option>
-					<option value="motorcycle">Motorcycle</option>
-					<option value="car">Car</option>
-					<option value="truck">Truck</option>
-					<option value="buse">Buse</option>
-				</select>
-			</td>
-		</tr>
+		
 
 		<tr></tr>
 		<tr></tr>

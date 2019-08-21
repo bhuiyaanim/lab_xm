@@ -31,9 +31,11 @@ class BookingController extends Controller
 
     }
 
-    public function add(Request $req){
+    public function add(Request $req, $bid){
         if($this->sessionCheck($req)){
-            return view('booking.add');
+            //$get = DB:table('bookinglist')->where('spaceId', $req->spaceId)->get();
+            $b = Bookinglist::find($bid);
+            return view('booking.add', ['std'=> $b]);
         }else{
             return redirect()->route('login.index');
         }
@@ -49,19 +51,19 @@ class BookingController extends Controller
 
             if(count($check) > 0){
 
-                $test = DB::table('bookings')->where('email', $req->email)->where('date', $req->date)->where('time', $req->time)->where('vnumber', $req->vnumber)->get();
+                $test = DB::table('bookinglist')->where('name', $req->name)->where('price', $req->price)->get();
                 
                 if (count($test) > 0) {
 
-                    $req->session()->flash('msg', "You have already booked a parking");
+                    $req->session()->flash('msg', "You have already added the food");
                 
                     return redirect()->route('booking.add');
                 }else{
 
-                    $booking = new Booking();
+                    //$booking = new Booking();
                     $bookinglist = new Bookinglist();
 
-                    $a = (int)$req->duration;
+                    /*$a = (int)$req->duration;
                     $b = (int)$check[0]->charge;
                     $c = $a * $b;
                     //echo $c;
@@ -79,11 +81,16 @@ class BookingController extends Controller
                     $booking->duration = $req->duration;
                     $booking->vnumber = $req->vnumber;
                     $booking->type = $req->type;
-                    $booking->tc = $c;
+                    $booking->tc = $c;*/
                     
-                    $booking->save();
+                    //$booking->save();
+
+                    $bookinglist->name = $req->name;
+                    $bookinglist->details = $req->details;
+                    $bookinglist->price = $req->price;
+                    $bookinglist->spaceId = $req->spaceId;
                 
-                    $bookinglist = Bookinglist::find($id[0]->id);
+                    /*$bookinglist = Bookinglist::find($id[0]->id);
                     $bookinglist->name = $check[0]->name;
                     $bookinglist->location = $check[0]->houseNo.", ".$check[0]->roadNo.", ".$check[0]->area;
                     $count = DB::table('bookings')->where('psname', $booking->psname)->get()->count();
@@ -94,9 +101,9 @@ class BookingController extends Controller
 
                     $bookinglist->tc = $y;
 
-                    $bookinglist->save();
+                    $bookinglist->save();*/
 
-                    $result = DB::table('bookings')->where('name', $req->name)->get();
+                    $result = DB::table('bookinglists')->where('name', $req->name)->get();
 
                     //echo "insert compleat";
                     return redirect()->route('booking.details', $result[0]->id);                           

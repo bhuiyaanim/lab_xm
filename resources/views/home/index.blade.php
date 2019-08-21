@@ -10,8 +10,8 @@
 	<h2>Welcome {{session('name')}}</h2>
 
 	<a href="{{route('parkingspace.index')}}">Resturent</a> |
-	<a href="{{route('parkingspace.index')}}">User</a> |
-	<a href="{{route('booking.index')}}">Profile</a> |
+	<a href="{{route('booking.index')}}">User</a> |
+	<a href="{{route('parkingspace.profile')}}">Profile</a> |
 	<a href="/logout">Logout</a>	
 
 </body>

@@ -4,7 +4,7 @@
 	<title>Edit Parking Space</title>
 </head>
 <body>
-	<h1 align="center">Edit PArking Space</h1>
+	<h1 align="center">Edit Resturent</h1>
 	
 	<div align="center">
 		<a href="{{route('home.index')}}">Home</a> |
@@ -37,25 +37,10 @@
 			<td>Area :</td>
 			<td><input type="text" name="area" value="{{$std['area']}}" size="30"></td>
 		</tr>
+		
 		<tr>
-			<td>Motorcycle :</td>
-			<td><input type="text" name="motorcycle" value="{{$std['motorcycle']}}" size="30"></td>
-		</tr>
-		<tr>
-			<td>Car :</td>
-			<td><input type="text" name="car" value="{{$std['car']}}" size="30"></td>
-		</tr>
-		<tr>
-			<td>Truck :</td>
-			<td><input type="text" name="truck" value=" {{$std['truck']}}" size="30"></td>
-		</tr>
-		<tr>
-			<td>Buse :</td>
-			<td><input type="text" name="buse" value="{{$std['buse']}}" size="30"></td>
-		</tr>
-		<tr>
-			<td>Charge/hr :</td>
-			<td><input type="text" name="charge" value="{{$std['charge']}}" size="30"></td>
+			<td>Contact Number:</td>
+			<td><input type="text" name="number" value="{{$std['number']}}" size="30"></td>
 		</tr>
 		<tr></tr>
 		<tr></tr>

@@ -41,6 +41,8 @@ Route::get('/admin', 'AdminController@index')->name('admin.index');
 		Route::get('/parkingspace/details/{sid}', 'ParkingSpaceController@details')->name('parkingspace.details');
 
 		Route::get('/parkingspace/spaceList', 'ParkingSpaceController@show')->name('parkingspace.spaceList');
+		
+		Route::get('/parkingspace/profile', 'ParkingSpaceController@profile')->name('parkingspace.profile');
 
 		Route::get('/parkingspace/edit/{sid}', 'ParkingSpaceController@edit')->name('parkingspace.edit');
 		Route::post('/parkingspace/edit/{sid}', 'ParkingSpaceController@update');
@@ -52,8 +54,8 @@ Route::get('/admin', 'AdminController@index')->name('admin.index');
 
 	Route::get('/booking', 'BookingController@index')->name('booking.index');
 
-		Route::get('/booking/add', 'BookingController@add')->name('booking.add');
-		Route::post('/booking/add', 'BookingController@create');
+		Route::get('/booking/add/{bid}', 'BookingController@add')->name('booking.add');
+		Route::post('/booking/add/{bid}', 'BookingController@create');
 
 		Route::get('/booking/bookingList', 'BookingController@show')->name('booking.bookingList');
 

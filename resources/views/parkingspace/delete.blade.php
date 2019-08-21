@@ -4,10 +4,10 @@
 	<title>Delete confirm</title>
 </head>
 <body>
-	<h1 align="center">Delete Parking Space</h1>
+	<h1 align="center">Delete Resturent</h1>
 	<div align="center">
 		<a href="{{route('home.index')}}">Home</a> |
-		<a href="{{route('parkingspace.spaceList')}}">Parking Space List</a> |
+		<a href="{{route('parkingspace.spaceList')}}">Resturent List</a> |
 		<a href="/logout">Logout</a>	
 	</div>
 	
@@ -27,12 +27,8 @@
 			<td>{{$std['houseNo']}}, {{$std['roadNo']}}, {{$std['area']}}</td>
 		</tr>
 		<tr>
-			<td>Capacity : </td>
-			<td>{{$std['motorcycle']}}, {{$std['car']}}, {{$std['truck']}}, {{$std['buse']}}</td>
-		</tr>
-		<tr>
-			<td>Charge/hr : </td>
-			<td>{{$std['charge']}}</td>
+			<td>Contact No : </td>
+			<td>{{$std['number']}}</td>
 		</tr>
 	</table>
 	

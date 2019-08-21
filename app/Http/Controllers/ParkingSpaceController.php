@@ -36,7 +36,7 @@ class ParkingSpaceController extends Controller
 
         if($this->sessionCheck($req)){
             
-            $s = Resturent::find($sid);
+            $s = Space::find($sid);
             return view('parkingspace.details', ['std'=> $s]);
         }else{
             return redirect()->route('login.index');
@@ -59,7 +59,7 @@ class ParkingSpaceController extends Controller
             $house = 'house No';
             $road = 'road No';
 
-            $check = DB::table('resturents')->where('name', $req->name)->where('houseNo', $house." ".$req->houseNo)->where('roadNo', $road." ".$req->roadNo)->where('area', $req->area)->get();
+            $check = DB::table('spaces')->where('name', $req->name)->where('houseNo', $house." ".$req->houseNo)->where('roadNo', $road." ".$req->roadNo)->where('area', $req->area)->get();
 
             //echo $check;
 
@@ -69,7 +69,7 @@ class ParkingSpaceController extends Controller
                 return redirect()->route('parkingspace.add');
             }else{
 
-                $space  = new Request();
+                $space  = new Space();
                 
                 $space->name = $req->name;
                 $space->houseNo = $house." ".$req->houseNo;
@@ -79,10 +79,10 @@ class ParkingSpaceController extends Controller
                 
                 $space->save();
 
-                $result = DB::table('resturents')->where('name', $req->name)->get();
+                $result = DB::table('spaces')->where('name', $req->name)->get();
 
                 
-                return redirect()->route('parkingspace.details', $result[0]->id);
+                return redirect()->route('parkingspace.details', $result[0]->spaceId);
 
             }
 
@@ -97,10 +97,10 @@ class ParkingSpaceController extends Controller
 
         if($this->sessionCheck($req)){
         	
-            $std = Resturent::all();
-            $c = Resturent::all()->count();
-            echo "Works";
-        	//return view('parkingspace.show', ['stdlist'=>$std], ['count'=>$c]);
+            $std = Space::all();
+            $c = Space::all()->count();
+            //echo "Works";
+        	return view('parkingspace.show', ['stdlist'=>$std], ['count'=>$c]);
         
         }else{
             return redirect()->route('login.index');
@@ -135,16 +135,12 @@ class ParkingSpaceController extends Controller
             $space->houseNo = $req->houseNo;
             $space->roadNo = $req->roadNo;
             $space->area = $req->area;
-            $space->motorcycle = $req->motorcycle;
-            $space->car = $req->car;
-            $space->truck = $req->truck;
-            $space->buse = $req->buse;
-            $space->charge = $req->charge;
+            $space->number = $req->number;
             $space->save();
 
             $s = DB::table('spaces')->where('spaceId', $sid)->get();
 
-            $bookinglist  = new Bookinglist();
+            /*$bookinglist  = new Bookinglist();
             $bookinglist = Bookinglist::find($s[0]->spaceId);
             $bookinglist->name = $s[0]->name;
             $bookinglist->location = $s[0]->houseNo.", ".$s[0]->roadNo.", ".$s[0]->area;
@@ -165,7 +161,7 @@ class ParkingSpaceController extends Controller
                 $booking = Booking::find($test['id']);
                 $location = $s[0]->houseNo.", ".$s[0]->roadNo.", ".$s[0]->area;
                 $booking->where('spaceId', $s[0]->spaceId)->update(array('psname' => $s[0]->name), array('location' => $location));
-            }
+            }*/
             
 
         	return redirect()->route('parkingspace.details', $sid);

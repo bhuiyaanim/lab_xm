@@ -63,7 +63,7 @@ Route::get('/admin', 'AdminController@index')->name('admin.index');
 		
 		Route::get('/booking/details/{bid}', 'BookingController@details')->name('booking.details');
 		
-		Route::get('/booking/total/{bid}', 'BookingController@total')->name('booking.total');
+		Route::get('/booking/total', 'BookingController@total')->name('booking.total');
 		
 		Route::get('/booking/edit/{bid}', 'BookingController@edit')->name('booking.edit');
 		Route::post('/booking/edit/{bid}', 'BookingController@update');

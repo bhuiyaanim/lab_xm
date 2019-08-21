@@ -18,7 +18,7 @@
 	<table align="center">
 
 		<tr>
-			<td style="display:none;"><input type="text" name="rname" value="{{$std['spaceId']}}"></td>
+			<td style="display:none;"><input type="text" name="spaceId">{{$std['spaceId']}}</td>
 		</tr>
 		<tr>
 			<td style="display:none;"><input type="text" name="rname" value="{{$std['name']}}"></td>

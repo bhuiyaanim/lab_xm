@@ -35,6 +35,9 @@ class BookingController extends Controller
         if($this->sessionCheck($req)){
             //$get = DB:table('bookinglist')->where('spaceId', $req->spaceId)->get();
             $b = Bookinglist::find($bid);
+            $get = DB::table('bookinglists')->where('spaceId', $bid)->get();
+            $req->session()->put('spaceId', $get[0]->spaceId);
+
             return view('booking.add', ['std'=> $b]);
         }else{
             return redirect()->route('login.index');
@@ -45,78 +48,41 @@ class BookingController extends Controller
     public function create(BookingRequest $req, $bid){
         if($this->sessionCheck($req)){
 
-            $check = DB::table('spaces')->where('name', $req->psname)->get();
+            $spaceId = $req->session()->get('spaceId');
+            $abc = DB::table('spaces')->where('spaceId', $spaceId)->get();
+            
 
-            //echo $check;
-
-            if(count($check) > 0){
-
-                $test = DB::table('bookinglist')->where('name', $req->name)->where('price', $req->price)->get();
+                $test = DB::table('bookinglists')->where('name', $req->name)->where('price', $req->price)->get();
                 
                 if (count($test) > 0) {
 
                     $req->session()->flash('msg', "You have already added the food");
                 
-                    return redirect()->route('booking.add');
+                    return redirect()->route('booking.add', ['std'=> $spaceId]);
                 }else{
 
-                    //$booking = new Booking();
                     $bookinglist = new Bookinglist();
-
-                    /*$a = (int)$req->duration;
-                    $b = (int)$check[0]->charge;
-                    $c = $a * $b;
-                    //echo $c;
-                    $id = DB::table('bookinglists')->where('name', $req->psname)->get();
-
-                    $booking->name = $req->name;
-                    $booking->email = $req->email;
-                    $booking->number = $req->number;
-                    $booking->psname = $req->psname;
-                    $booking->spaceId = $check[0]->spaceId;
-                    $booking->bookinglistID = $id[0]->id;
-                    $booking->location = $check[0]->houseNo.", ".$check[0]->roadNo.", ".$check[0]->area;
-                    $booking->date = $req->date;
-                    $booking->time = $req->time;
-                    $booking->duration = $req->duration;
-                    $booking->vnumber = $req->vnumber;
-                    $booking->type = $req->type;
-                    $booking->tc = $c;*/
-                    
-                    //$booking->save();
 
                     $bookinglist->name = $req->name;
                     $bookinglist->details = $req->details;
                     $bookinglist->price = $req->price;
-                    $bookinglist->spaceId = $req->spaceId;
-                    $bookinglist->rname = $req->rname;
+                    $bookinglist->spaceId = $abc[0]->spaceId;
+                    $bookinglist->rname = $abc[0]->name;
                 
-                    /*$bookinglist = Bookinglist::find($id[0]->id);
-                    $bookinglist->name = $check[0]->name;
-                    $bookinglist->location = $check[0]->houseNo.", ".$check[0]->roadNo.", ".$check[0]->area;
-                    $count = DB::table('bookings')->where('psname', $booking->psname)->get()->count();
-                    //$bookinglist->count = DB::table('bookings')->groupBy('psname')->count();
-
-                    $x = (int)$count;
-                    $y = $x * $b;
-
-                    $bookinglist->tc = $y;*/
-
+                    
                     $bookinglist->save();
 
                     $result = DB::table('bookinglists')->where('name', $req->name)->get();
-                    $abc = DB::table('spaces')->where('spaceId', $req->spaceId)->get();
+                    
                     $xyz = $abc[0]->name;
-                    echo "insert compleat";
-                    //return redirect()->route('booking.details', $result[0]->id, $xyz);                           
+                    //echo "insert compleat";
+                    
+                    return redirect()->route('booking.details', $result[0]->id);                           
+                
+
                 }
 
-            }else{
-
-                $req->session()->flash('msg', "Parking Name or Location does not exist");
-                
-                return redirect()->route('booking.add');
-            }
+            
 
         }else{
             return redirect()->route('login.index');
@@ -129,7 +95,7 @@ class BookingController extends Controller
 
         if($this->sessionCheck($req)){
             
-            $b = Booking::find($bid);
+            $b = Bookinglist::find($bid);
             return view('booking.details', ['std'=> $b]);
         }else{
             return redirect()->route('login.index');
@@ -163,26 +129,11 @@ class BookingController extends Controller
 
     }
 
-    public function total(Request $req, $bid){
+    public function total(Request $req){
 
         if($this->sessionCheck($req)){
             
-            $bookinglist = new Bookinglist();
-            $bookinglist = Bookinglist::find($bid);
-
-            $bookinglist->name = $bookinglist->name;
-            $bookinglist->location = $bookinglist->location;
-
-            $count = DB::table('bookings')->where('psname', $bookinglist->name)->get()->count();
-            $charge = DB::table('spaces')->where('name', $bookinglist->name)->get();
-            $x = (int)$count;
-            $y = (int)$charge[0]->charge;
-            $sum = $x * $y;
-
-            
-            $bookinglist->count = $count;
-            $bookinglist->tc = $sum;
-            $bookinglist->save();
+            $spaceId = $req->session()->get('spaceId');
 
             $b = Bookinglist::find($bid);
         
